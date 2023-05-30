@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { Plate, createParagraphPlugin, createHeadingPlugin, PlateProvider, TEditableProps ,createPlateUI} from "@udecode/plate";
+import { Plate, createParagraphPlugin, createHeadingPlugin, createBlockquotePlugin, createCodeBlockPlugin,PlateProvider, TEditableProps ,createPlateUI} from "@udecode/plate";
 import { createMyPlugins, MyEditor, MyPlatePlugin, MyValue } from "./typescript/plateTypes";
 import { Toolbar } from "./toolbar/Toolbar";
 import { ToolbarButtons } from "./ToolbarButtons";
@@ -7,7 +7,7 @@ import { ToolbarButtons } from "./ToolbarButtons";
 function App() {
   const plugins = useMemo(
     () =>
-      createMyPlugins([createParagraphPlugin(), createHeadingPlugin()], {
+      createMyPlugins([createParagraphPlugin(), createBlockquotePlugin(), createHeadingPlugin(), createCodeBlockPlugin()], {
         components: createPlateUI(),
       }),
     []
