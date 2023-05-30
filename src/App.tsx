@@ -1,15 +1,37 @@
 import React, { useMemo } from "react";
-import { Plate, createParagraphPlugin, createHeadingPlugin, createBlockquotePlugin, createCodeBlockPlugin,PlateProvider, TEditableProps ,createPlateUI} from "@udecode/plate";
+import {
+  createBasicElementsPlugin,
+  createExitBreakPlugin,
+  createResetNodePlugin,
+  createSoftBreakPlugin,
+  Plate,
+  PlateProvider,
+  TEditableProps
+} from '@udecode/plate';
+
+
+import { plateUI } from './common/plateUI';
+
 import { createMyPlugins, MyEditor, MyPlatePlugin, MyValue } from "./typescript/plateTypes";
 import { Toolbar } from "./toolbar/Toolbar";
 import { ToolbarButtons } from "./ToolbarButtons";
+import { resetBlockTypePlugin } from './reset-node/resetBlockTypePlugin';
+import { softBreakPlugin } from "./soft-break/softBreakPlugin";
 
 function App() {
   const plugins = useMemo(
     () =>
-      createMyPlugins([createParagraphPlugin(), createBlockquotePlugin(), createHeadingPlugin(), createCodeBlockPlugin()], {
-        components: createPlateUI(),
-      }),
+      createMyPlugins(
+        [
+          createBasicElementsPlugin(),
+          createResetNodePlugin(resetBlockTypePlugin),
+          createSoftBreakPlugin(softBreakPlugin),
+          
+        ],
+        {
+          components: plateUI,
+        }
+      ),
     []
   );
 
