@@ -1,5 +1,10 @@
 import React from "react";
-import { Plate, TEditableProps } from "@udecode/plate";
+import { Plate, PlateProvider, TEditableProps } from "@udecode/plate";
+import { createMyPlugins, MyEditor, MyPlatePlugin, MyValue } from "./typescript/plateTypes";
+import { Toolbar } from './toolbar/Toolbar';
+import { ToolbarButtons } from './ToolbarButtons';
+
+
 
 function App() {
   const editableProps: TEditableProps = {
@@ -7,7 +12,12 @@ function App() {
   };
   return (
     <div className="App">
-      <Plate editableProps={editableProps} />
+      <PlateProvider<MyValue>>
+        <Toolbar>
+          <ToolbarButtons />
+        </Toolbar>
+        <Plate editableProps={editableProps}></Plate>
+      </PlateProvider>
     </div>
   );
 }
