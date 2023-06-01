@@ -21,6 +21,7 @@ import {
   useEventPlateId,
 } from '@udecode/plate';
 import { useMyPlateEditorRef } from '../typescript/plateTypes';
+import {ELEMENT_TITLE} from '../ptconstants'
 
 const tooltip = (content: string) => ({
   content,
@@ -57,7 +58,7 @@ export const BasicElementToolbarButtons = () => {
       />
       <BlockToolbarButton
         tooltip={tooltip('Heading 6')}
-        type={getPluginType(editor, ELEMENT_H6)}
+        type={getPluginType(editor, ELEMENT_TITLE)}
         icon={<Looks6 />}
       />
       <BlockToolbarButton

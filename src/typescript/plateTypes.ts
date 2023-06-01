@@ -172,13 +172,11 @@ import {
     type: typeof ELEMENT_PARAGRAPH;
     children: MyInlineChildren;
   }
-  
  
   export interface MyTitleElement extends MyBlockElement {
     type: typeof ELEMENT_TITLE;
     children: MyInlineChildren;
   }
-  
 
   export interface MyH1Element extends MyBlockElement {
     type: typeof ELEMENT_H1;
@@ -278,6 +276,7 @@ import {
   
   export type MyRootBlock =
     | MyParagraphElement
+    | MyTitleElement
     | MyH1Element
     | MyH2Element
     | MyH3Element

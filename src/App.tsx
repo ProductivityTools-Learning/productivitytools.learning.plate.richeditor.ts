@@ -38,7 +38,7 @@ let components = createPlateUI({
     styles:{
       root:{
         margin: "0 0 0 0",
-        fontSize: "25px",
+        fontSize: "45px",
         fontWeight: "1000",
       }
     }
@@ -47,16 +47,17 @@ let components = createPlateUI({
     styles: {
       root: {
         margin: "0 0 0 0",
-        fontSize: "25px",
+        fontSize: "45px",
         fontWeight: "1000",
-      },
-    },
-  }),
+      }
+    }
+  })
   // customize your components by plugin key
 });
-components = withStyledPlaceHolders(components);
+components = components;
 
 function App() {
+  debugger;
   const plugins = useMemo(
     () =>
       createMyPlugins(
