@@ -15,6 +15,7 @@ import {
   createExitBreakPlugin,
   createHeadingPlugin,
   StyledElement,
+  createPluginFactory
 } from "@udecode/plate";
 import { withProps } from "@udecode/plate";
 import { trailingBlockPlugin } from "./trailing-block/trailingBlockPlugin"; //forced layout
@@ -23,23 +24,28 @@ import { withStyledPlaceHolders } from "./placeholder/withStyledPlaceHolders";
 
 import { plateUI } from "./common/plateUI";
 
-import { createMyPlugins, MyEditor, MyPlatePlugin, MyValue } from "./typescript/plateTypes";
+import {
+  createMyPlugins,
+  MyEditor,
+  MyPlatePlugin,
+  MyValue
+} from "./typescript/plateTypes";
 import { Toolbar } from "./toolbar/Toolbar";
 import { ToolbarButtons } from "./ToolbarButtons";
 import { resetBlockTypePlugin } from "./reset-node/resetBlockTypePlugin";
 import { softBreakPlugin } from "./soft-break/softBreakPlugin";
 import { exitBreakPlugin } from "./exit-break/exitBreakPlugin";
 import { ELEMENT_TITLE } from "./ptconstants";
-import {TitleElement} from "./ptcomponents/title"
+import { TitleElement } from "./ptcomponents/title";
 
 let components = createPlateUI({
   [ELEMENT_CODE_BLOCK]: CodeBlockElement,
-  [ELEMENT_TITLE]: withProps(StyledElement,{
-    styles:{
-      root:{
+  [ELEMENT_TITLE]: withProps(StyledElement, {
+    styles: {
+      root: {
         margin: "0 0 0 0",
         fontSize: "45px",
-        fontWeight: "1000",
+        fontWeight: "1000"
       }
     }
   }),
@@ -48,13 +54,18 @@ let components = createPlateUI({
       root: {
         margin: "0 0 0 0",
         fontSize: "45px",
-        fontWeight: "1000",
+        fontWeight: "1000"
       }
     }
   })
   // customize your components by plugin key
 });
 components = components;
+
+const createTitlePlugin = createPluginFactory({
+  key: ELEMENT_TITLE,
+  isElement: true
+});
 
 function App() {
   debugger;
@@ -63,23 +74,24 @@ function App() {
       createMyPlugins(
         [
           createBasicElementsPlugin(), //h1-h6, quote, code
+          createTitlePlugin(),
           createResetNodePlugin(resetBlockTypePlugin), //reseting formatinog on enter
           createSoftBreakPlugin(softBreakPlugin), //enter new line without stsarting new block, shift_enter
 
           createNormalizeTypesPlugin(forcedLayoutPlugin), //forced layout
           createTrailingBlockPlugin(trailingBlockPlugin), //forced layout
           createExitBreakPlugin(exitBreakPlugin), //forced layout
-          createHeadingPlugin(), //forced layout
+          createHeadingPlugin() //forced layout
         ],
         {
-          components: components,
+          components: components
         }
       ),
     []
   );
 
   const editableProps: TEditableProps = {
-    placeholder: "Type...",
+    placeholder: "Type..."
   };
   const [debugValue, setDebugValue] = useState<MyValue | null>(null);
 
