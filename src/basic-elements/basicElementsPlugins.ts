@@ -9,10 +9,11 @@ import { createMyPlugins } from '../typescript/plateTypes';
 
 export const basicElementsPlugins = createMyPlugins(
   [
+    createParagraphPlugin(),
     createBlockquotePlugin(),
     createCodeBlockPlugin(),
     createHeadingPlugin(),
-    createParagraphPlugin(),
+
   ],
   {
     components: plateUI,

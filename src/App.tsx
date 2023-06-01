@@ -1,39 +1,57 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import {
-  createBasicElementsPlugin,//h1, quote, code
-  createResetNodePlugin,//h1, quote, code
-  createSoftBreakPlugin,//h1, quote, code
+  createBasicElementsPlugin, //h1, quote, code
+  createResetNodePlugin, //h1, quote, code
+  createSoftBreakPlugin, //h1, quote, code
   Plate,
   PlateProvider,
   TEditableProps,
-  createNormalizeTypesPlugin,//forced layout
-  createTrailingBlockPlugin,//forced layout
-  ELEMENT_H1,//forced layout
+  createNormalizeTypesPlugin, //forced layout
+  createTrailingBlockPlugin, //forced layout
+  ELEMENT_H1, //forced layout
   createPlateUI,
   ELEMENT_CODE_BLOCK,
   CodeBlockElement,
   createExitBreakPlugin,
-  createHeadingPlugin
-} from '@udecode/plate';
+  createHeadingPlugin,
+  StyledElement,
+} from "@udecode/plate";
+import { withProps } from "@udecode/plate";
+import { trailingBlockPlugin } from "./trailing-block/trailingBlockPlugin"; //forced layout
+import { forcedLayoutPlugin } from "./forced-layout/forcedLayoutPlugin"; //forced layout
+import { withStyledPlaceHolders } from "./placeholder/withStyledPlaceHolders";
 
-import { trailingBlockPlugin } from './trailing-block/trailingBlockPlugin';//forced layout
-import { forcedLayoutPlugin } from './forced-layout/forcedLayoutPlugin';//forced layout
-import { withStyledPlaceHolders } from './placeholder/withStyledPlaceHolders';
-
-
-
-import { plateUI } from './common/plateUI';
+import { plateUI } from "./common/plateUI";
 
 import { createMyPlugins, MyEditor, MyPlatePlugin, MyValue } from "./typescript/plateTypes";
 import { Toolbar } from "./toolbar/Toolbar";
 import { ToolbarButtons } from "./ToolbarButtons";
-import { resetBlockTypePlugin } from './reset-node/resetBlockTypePlugin';
+import { resetBlockTypePlugin } from "./reset-node/resetBlockTypePlugin";
 import { softBreakPlugin } from "./soft-break/softBreakPlugin";
-import { exitBreakPlugin } from './exit-break/exitBreakPlugin';
-
+import { exitBreakPlugin } from "./exit-break/exitBreakPlugin";
+import { ELEMENT_TITLE } from "./ptconstants";
+import {TitleElement} from "./ptcomponents/title"
 
 let components = createPlateUI({
   [ELEMENT_CODE_BLOCK]: CodeBlockElement,
+  [ELEMENT_TITLE]: withProps(StyledElement,{
+    styles:{
+      root:{
+        margin: "0 0 0 0",
+        fontSize: "25px",
+        fontWeight: "1000",
+      }
+    }
+  }),
+  [ELEMENT_H1]: withProps(StyledElement, {
+    styles: {
+      root: {
+        margin: "0 0 0 0",
+        fontSize: "25px",
+        fontWeight: "1000",
+      },
+    },
+  }),
   // customize your components by plugin key
 });
 components = withStyledPlaceHolders(components);
@@ -43,16 +61,14 @@ function App() {
     () =>
       createMyPlugins(
         [
-          createBasicElementsPlugin(),
-          createResetNodePlugin(resetBlockTypePlugin),
-          createSoftBreakPlugin(softBreakPlugin),
-          
-          createNormalizeTypesPlugin(forcedLayoutPlugin),//forced layout
-          createTrailingBlockPlugin(trailingBlockPlugin),//forced layout
-          createExitBreakPlugin(exitBreakPlugin),//forced layout
-          createHeadingPlugin(),//forced layout
-         
+          createBasicElementsPlugin(), //h1-h6, quote, code
+          createResetNodePlugin(resetBlockTypePlugin), //reseting formatinog on enter
+          createSoftBreakPlugin(softBreakPlugin), //enter new line without stsarting new block, shift_enter
 
+          createNormalizeTypesPlugin(forcedLayoutPlugin), //forced layout
+          createTrailingBlockPlugin(trailingBlockPlugin), //forced layout
+          createExitBreakPlugin(exitBreakPlugin), //forced layout
+          createHeadingPlugin(), //forced layout
         ],
         {
           components: components,
@@ -64,14 +80,23 @@ function App() {
   const editableProps: TEditableProps = {
     placeholder: "Type...",
   };
+  const [debugValue, setDebugValue] = useState<MyValue | null>(null);
+
   return (
     <div className="App">
-      <PlateProvider<MyValue> plugins={plugins}>
+      <PlateProvider<MyValue>
+        plugins={plugins}
+        onChange={(newValue) => {
+          setDebugValue(newValue);
+          // save newValue...
+        }}
+      >
         <Toolbar>
           <ToolbarButtons />
         </Toolbar>
         <Plate editableProps={editableProps}></Plate>
       </PlateProvider>
+      value: {JSON.stringify(debugValue)}
     </div>
   );
 }
