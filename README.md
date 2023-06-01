@@ -9,3 +9,5 @@ This repo does not have the reset content and onchange content, this is playgrou
 Source from here will be moved to editor with plugins which will be step before ptplate.
 
 Plugins from here will be added to the project productivitytools.learning.plate.editorwithplugins.
+
+![](Images/2023-06-01-22-34-16.png)
