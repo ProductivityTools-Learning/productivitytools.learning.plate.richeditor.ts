@@ -58,7 +58,7 @@ export const BasicElementToolbarButtons = () => {
       />
       <BlockToolbarButton
         tooltip={tooltip('Heading 6')}
-        type={getPluginType(editor, ELEMENT_TITLE)}
+        type={getPluginType(editor, ELEMENT_H6)}
         icon={<Looks6 />}
       />
       <BlockToolbarButton

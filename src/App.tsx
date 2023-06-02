@@ -44,8 +44,9 @@ let components = createPlateUI({
     styles: {
       root: {
         margin: "0 0 0 0",
-        fontSize: "45px",
-        fontWeight: "1000"
+        fontSize: "25px",
+        fontWeight: "1000",
+        color:"gray"
       }
     }
   }),
@@ -53,7 +54,7 @@ let components = createPlateUI({
     styles: {
       root: {
         margin: "0 0 0 0",
-        fontSize: "45px",
+        fontSize: "20px",
         fontWeight: "1000"
       }
     }
@@ -76,12 +77,12 @@ function App() {
           createBasicElementsPlugin(), //h1-h6, quote, code
           createTitlePlugin(),
           createResetNodePlugin(resetBlockTypePlugin), //reseting formatinog on enter
-          createSoftBreakPlugin(softBreakPlugin), //enter new line without stsarting new block, shift_enter
+          //createSoftBreakPlugin(softBreakPlugin), //enter new line without stsarting new block, shift_enter
 
           createNormalizeTypesPlugin(forcedLayoutPlugin), //forced layout
-          createTrailingBlockPlugin(trailingBlockPlugin), //forced layout
+         // createTrailingBlockPlugin(trailingBlockPlugin), //forced layout
           createExitBreakPlugin(exitBreakPlugin), //forced layout
-          createHeadingPlugin() //forced layout
+          //createHeadingPlugin() //forced layout
         ],
         {
           components: components

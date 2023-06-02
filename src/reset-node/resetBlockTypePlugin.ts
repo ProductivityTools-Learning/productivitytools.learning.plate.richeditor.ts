@@ -14,7 +14,7 @@ import { ELEMENT_TITLE } from "../pttitle/titleconsts";
 import { MyPlatePlugin } from "../typescript/plateTypes";
 
 const resetBlockTypesCommonRule = {
-  types: [ELEMENT_BLOCKQUOTE, ELEMENT_TODO_LI, ELEMENT_TITLE],
+  types: [ELEMENT_BLOCKQUOTE, ELEMENT_TODO_LI],
   defaultType: ELEMENT_PARAGRAPH,
 };
 
