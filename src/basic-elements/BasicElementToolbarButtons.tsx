@@ -21,7 +21,7 @@ import {
   useEventPlateId,
 } from '@udecode/plate';
 import { useMyPlateEditorRef } from '../typescript/plateTypes';
-import {ELEMENT_TITLE} from '../ptconstants'
+import {  ELEMENT_TITLE } from "../pttitle/titleconsts";
 
 const tooltip = (content: string) => ({
   content,

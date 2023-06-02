@@ -35,8 +35,8 @@ import { ToolbarButtons } from "./ToolbarButtons";
 import { resetBlockTypePlugin } from "./reset-node/resetBlockTypePlugin";
 import { softBreakPlugin } from "./soft-break/softBreakPlugin";
 import { exitBreakPlugin } from "./exit-break/exitBreakPlugin";
-import { ELEMENT_TITLE } from "./ptconstants";
-import { TitleElement } from "./ptcomponents/title";
+import { ELEMENT_TITLE } from "./pttitle/titleconsts";
+import { createTitlePlugin } from "./pttitle/titleplugin"
 
 let components = createPlateUI({
   [ELEMENT_CODE_BLOCK]: CodeBlockElement,
@@ -62,10 +62,10 @@ let components = createPlateUI({
 });
 components = components;
 
-const createTitlePlugin = createPluginFactory({
-  key: ELEMENT_TITLE,
-  isElement: true
-});
+// const createTitlePlugin = createPluginFactory({
+//   key: ELEMENT_TITLE,
+//   isElement: true
+// });
 
 function App() {
   debugger;
