@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
 import {
+  useResetPlateEditor,//not used in this project, but I am copying it to different one
   createBasicElementsPlugin, //h1, quote, code
   createResetNodePlugin, //h1, quote, code
   createSoftBreakPlugin, //h1, quote, code
@@ -21,11 +22,10 @@ import { withProps } from "@udecode/plate";
 import { trailingBlockPlugin } from "./trailing-block/trailingBlockPlugin"; //forced layout
 import { forcedLayoutPlugin } from "./forced-layout/forcedLayoutPlugin"; //forced layout
 import { withStyledPlaceHolders } from "./placeholder/withStyledPlaceHolders";
-
 import { plateUI } from "./common/plateUI";
-
 import {
   createMyPlugins,
+  MyParagraphElement,
   MyEditor,
   MyPlatePlugin,
   MyValue
@@ -59,7 +59,6 @@ let components = createPlateUI({
       }
     }
   })
-  // customize your components by plugin key
 });
 components = components;
 
@@ -69,7 +68,6 @@ components = components;
 // });
 
 function App() {
-  debugger;
   const plugins = useMemo(
     () =>
       createMyPlugins(
