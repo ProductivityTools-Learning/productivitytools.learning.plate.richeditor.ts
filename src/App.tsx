@@ -1,6 +1,6 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState, useRef } from "react";
 import {
-  useResetPlateEditor,//not used in this project, but I am copying it to different one
+  useResetPlateEditor, //not used in this project, but I am copying it to different one
   createBasicElementsPlugin, //h1, quote, code
   createResetNodePlugin, //h1, quote, code
   createSoftBreakPlugin, //h1, quote, code
@@ -17,27 +17,21 @@ import {
   createHeadingPlugin,
   StyledElement,
   createPluginFactory,
-  createLinkPlugin
+  createLinkPlugin,
 } from "@udecode/plate";
 import { withProps } from "@udecode/plate";
 import { trailingBlockPlugin } from "./trailing-block/trailingBlockPlugin"; //forced layout
 import { forcedLayoutPlugin } from "./forced-layout/forcedLayoutPlugin"; //forced layout
 import { withStyledPlaceHolders } from "./placeholder/withStyledPlaceHolders";
 import { plateUI } from "./common/plateUI";
-import {
-  createMyPlugins,
-  MyParagraphElement,
-  MyEditor,
-  MyPlatePlugin,
-  MyValue
-} from "./typescript/plateTypes";
+import { createMyPlugins, MyParagraphElement, MyEditor, MyPlatePlugin, MyValue } from "./typescript/plateTypes";
 import { Toolbar } from "./toolbar/Toolbar";
 import { ToolbarButtons } from "./ToolbarButtons";
 import { resetBlockTypePlugin } from "./reset-node/resetBlockTypePlugin";
 import { softBreakPlugin } from "./soft-break/softBreakPlugin";
 import { exitBreakPlugin } from "./exit-break/exitBreakPlugin";
 import { ELEMENT_TITLE } from "./pttitle/titleconsts";
-import { createTitlePlugin } from "./pttitle/titleplugin"
+import { createTitlePlugin } from "./pttitle/titleplugin";
 import { linkPlugin } from "./link/linkPlugin";
 
 let components = createPlateUI({
@@ -48,19 +42,19 @@ let components = createPlateUI({
         margin: "0 0 0 0",
         fontSize: "25px",
         fontWeight: "1000",
-        color:"gray"
-      }
-    }
+        color: "gray",
+      },
+    },
   }),
   [ELEMENT_H1]: withProps(StyledElement, {
     styles: {
       root: {
         margin: "0 0 0 0",
         fontSize: "20px",
-        fontWeight: "1000"
-      }
-    }
-  })
+        fontWeight: "1000",
+      },
+    },
+  }),
 });
 components = components;
 
@@ -83,17 +77,17 @@ function App() {
           createTrailingBlockPlugin(trailingBlockPlugin), //forced layout
           createExitBreakPlugin(exitBreakPlugin), //forced layout
           //createHeadingPlugin() //forced layout
-          createLinkPlugin(linkPlugin)//urls
+          createLinkPlugin(linkPlugin), //urls
         ],
         {
-          components: components
+          components: components,
         }
       ),
     []
   );
 
   const editableProps: TEditableProps = {
-    placeholder: "Type..."
+    placeholder: "Type...",
   };
   const [debugValue, setDebugValue] = useState<MyValue | null>(null);
 
