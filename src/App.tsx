@@ -16,7 +16,8 @@ import {
   createExitBreakPlugin,
   createHeadingPlugin,
   StyledElement,
-  createPluginFactory
+  createPluginFactory,
+  createLinkPlugin
 } from "@udecode/plate";
 import { withProps } from "@udecode/plate";
 import { trailingBlockPlugin } from "./trailing-block/trailingBlockPlugin"; //forced layout
@@ -37,6 +38,7 @@ import { softBreakPlugin } from "./soft-break/softBreakPlugin";
 import { exitBreakPlugin } from "./exit-break/exitBreakPlugin";
 import { ELEMENT_TITLE } from "./pttitle/titleconsts";
 import { createTitlePlugin } from "./pttitle/titleplugin"
+import { linkPlugin } from "./link/linkPlugin";
 
 let components = createPlateUI({
   [ELEMENT_CODE_BLOCK]: CodeBlockElement,
@@ -75,12 +77,13 @@ function App() {
           createBasicElementsPlugin(), //h1-h6, quote, code
           createTitlePlugin(),
           createResetNodePlugin(resetBlockTypePlugin), //reseting formatinog on enter
-          //createSoftBreakPlugin(softBreakPlugin), //enter new line without stsarting new block, shift_enter
+          createSoftBreakPlugin(softBreakPlugin), //enter new line without stsarting new block, shift_enter
 
           createNormalizeTypesPlugin(forcedLayoutPlugin), //forced layout
-         // createTrailingBlockPlugin(trailingBlockPlugin), //forced layout
+          createTrailingBlockPlugin(trailingBlockPlugin), //forced layout
           createExitBreakPlugin(exitBreakPlugin), //forced layout
           //createHeadingPlugin() //forced layout
+          createLinkPlugin(linkPlugin)//urls
         ],
         {
           components: components
