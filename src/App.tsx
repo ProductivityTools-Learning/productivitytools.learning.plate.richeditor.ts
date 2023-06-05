@@ -18,6 +18,10 @@ import {
   StyledElement,
   createPluginFactory,
   createLinkPlugin,
+  createIndentPlugin,//list
+  createListPlugin,//list
+  createIndentListPlugin,//list
+
 } from "@udecode/plate";
 import { withProps } from "@udecode/plate";
 import { trailingBlockPlugin } from "./trailing-block/trailingBlockPlugin"; //forced layout
@@ -33,6 +37,10 @@ import { exitBreakPlugin } from "./exit-break/exitBreakPlugin";
 import { ELEMENT_TITLE } from "./pttitle/titleconsts";
 import { createTitlePlugin } from "./pttitle/titleplugin";
 import { linkPlugin } from "./link/linkPlugin";
+import { indentPlugin } from './indent/indentPlugin';
+import { indentListPlugin } from './indent-list/indentListPlugin';
+
+
 
 let components = createPlateUI({
   [ELEMENT_CODE_BLOCK]: CodeBlockElement,
@@ -78,6 +86,9 @@ function App() {
           createExitBreakPlugin(exitBreakPlugin), //forced layout
           //createHeadingPlugin() //forced layout
           createLinkPlugin(linkPlugin), //urls
+          createListPlugin(),//list
+          createIndentListPlugin(indentListPlugin),//list
+          createIndentPlugin(indentPlugin),//list
         ],
         {
           components: components,
