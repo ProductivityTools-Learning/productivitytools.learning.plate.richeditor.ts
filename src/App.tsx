@@ -21,9 +21,9 @@ import {
   createIndentPlugin,//list
   createListPlugin,//list
   createIndentListPlugin,//list
+  createTablePlugin,//table
 
 } from "@udecode/plate";
-import { withProps } from "@udecode/plate";
 import { trailingBlockPlugin } from "./trailing-block/trailingBlockPlugin"; //forced layout
 import { forcedLayoutPlugin } from "./forced-layout/forcedLayoutPlugin"; //forced layout
 import { withStyledPlaceHolders } from "./placeholder/withStyledPlaceHolders";
@@ -34,42 +34,13 @@ import { ToolbarButtons } from "./ToolbarButtons";
 import { resetBlockTypePlugin } from "./reset-node/resetBlockTypePlugin";
 import { softBreakPlugin } from "./soft-break/softBreakPlugin";
 import { exitBreakPlugin } from "./exit-break/exitBreakPlugin";
-import { ELEMENT_TITLE } from "./pttitle/titleconsts";
 import { createTitlePlugin } from "./pttitle/titleplugin";
 import { linkPlugin } from "./link/linkPlugin";
 import { indentPlugin } from './indent/indentPlugin';
 import { indentListPlugin } from './indent-list/indentListPlugin';
+import {components} from './components/components'
 
 
-
-let components = createPlateUI({
-  [ELEMENT_CODE_BLOCK]: CodeBlockElement,
-  [ELEMENT_TITLE]: withProps(StyledElement, {
-    styles: {
-      root: {
-        margin: "0 0 0 0",
-        fontSize: "25px",
-        fontWeight: "1000",
-        color: "gray",
-      },
-    },
-  }),
-  [ELEMENT_H1]: withProps(StyledElement, {
-    styles: {
-      root: {
-        margin: "0 0 0 0",
-        fontSize: "20px",
-        fontWeight: "1000",
-      },
-    },
-  }),
-});
-components = components;
-
-// const createTitlePlugin = createPluginFactory({
-//   key: ELEMENT_TITLE,
-//   isElement: true
-// });
 
 function App() {
   const plugins = useMemo(
@@ -89,6 +60,12 @@ function App() {
           createListPlugin(),//list
           createIndentListPlugin(indentListPlugin),//list
           createIndentPlugin(indentPlugin),//list
+          createTablePlugin({
+            options: {
+              initialTableWidth: 600,
+              // disableMarginLeft: true,
+            },
+          }),
         ],
         {
           components: components,
