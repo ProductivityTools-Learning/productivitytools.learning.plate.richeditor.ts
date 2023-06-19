@@ -1,11 +1,12 @@
 import { BasicElementToolbarButtons } from "./basic-elements/BasicElementToolbarButtons";
 import { Link } from "@styled-icons/material/Link";
-import { LinkToolbarButton } from "@udecode/plate";
+import { LinkToolbarButton,ImageToolbarButton } from "@udecode/plate";
 import { IndentToolbarButtons } from './indent/IndentToolbarButtons';
 import { ListToolbarButtons } from './list/ListToolbarButtons';
 import { TableToolbarButtons } from './table/TableToolbarButtons';
-
+import { Image } from '@styled-icons/material/Image';
 import React from 'react'
+
 
 export const ToolbarButtons = () => {
   return (
@@ -15,6 +16,8 @@ export const ToolbarButtons = () => {
       <ListToolbarButtons />
       <IndentToolbarButtons />
       <TableToolbarButtons />
+      <ImageToolbarButton icon={<Image />} />
+
       
       {/* <ListToolbarButtons />
       <IndentToolbarButtons />

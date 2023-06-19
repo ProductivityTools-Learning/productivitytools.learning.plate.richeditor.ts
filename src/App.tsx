@@ -23,6 +23,11 @@ import {
   createIndentListPlugin,//list
   createTablePlugin,//table
 
+  createMediaEmbedPlugin,
+  createImagePlugin, //image
+  createSelectOnBackspacePlugin, //image
+  ELEMENT_IMAGE,//image
+
 } from "@udecode/plate";
 import { trailingBlockPlugin } from "./trailing-block/trailingBlockPlugin"; //forced layout
 import { forcedLayoutPlugin } from "./forced-layout/forcedLayoutPlugin"; //forced layout
@@ -64,6 +69,15 @@ function App() {
             options: {
               initialTableWidth: 600,
               // disableMarginLeft: true,
+            },
+          }),
+          createImagePlugin(),
+          createMediaEmbedPlugin(),
+          createSelectOnBackspacePlugin({
+            options: {
+              query: {
+                allow: [ELEMENT_IMAGE],
+              },
             },
           }),
         ],
