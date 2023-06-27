@@ -23,7 +23,7 @@ import {
   createIndentListPlugin,//list
   createTablePlugin,//table
 
-  createMediaEmbedPlugin,
+  createMediaEmbedPlugin,//image
   createImagePlugin, //image
   createSelectOnBackspacePlugin, //image
   ELEMENT_IMAGE,//image
