@@ -44,6 +44,7 @@ import { linkPlugin } from "./link/linkPlugin";
 import { indentPlugin } from './indent/indentPlugin';
 import { indentListPlugin } from './indent-list/indentListPlugin';
 import {components} from './components/components'
+import { mediaPlugin } from "./media/mediaPlugin";
 
 
 
@@ -72,7 +73,7 @@ function App() {
             },
           }),
           createImagePlugin(),
-          createMediaEmbedPlugin(),
+          createMediaEmbedPlugin(mediaPlugin),
           createSelectOnBackspacePlugin({
             options: {
               query: {
